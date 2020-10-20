@@ -6,7 +6,7 @@
     </div>
 
   </div>
-  <form action="/records{{#if isEdit}}?_method=PUT{{/if}}" method="POST">
+  <form action="/records{{#if isEdit}}/{{record._id}}?_method=PUT{{/if}}" method="POST">
     <div class="form-group row">
       <label for="name" class="col-sm-2 col-form-label">名稱<span class="required-mark">*</span></label>
       <div class="col-sm-10">

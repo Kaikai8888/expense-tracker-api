@@ -38,8 +38,19 @@ router.get('/edit/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-router.put('/', (req, res) => {
-  console.log('hi')
+router.put('/:id', (req, res) => {
+  const id = req.params.id
+  const input = req.body
+  Record.findById(id)
+    .then(record => {
+      if (record) {
+        Object.assign(record, input)
+        record.save()
+          .then(res.redirect('/'))
+          .catch(error => console.error(error))
+      }
+    })
+    .catch(error => console.error(error))
 })
 
 
