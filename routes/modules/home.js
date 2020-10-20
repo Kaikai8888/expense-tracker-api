@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     .then(categories =>
       Record.find()
         .populate('category')
+        .sort({ date: 'asc' })
         .lean()
         .then(records => res.render('index', {
           categories, records,
