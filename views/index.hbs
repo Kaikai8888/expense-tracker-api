@@ -1,5 +1,5 @@
 <div class="container" id="index-page">
-  <form action="" id="category-select-form">
+  <form action="/" method="POST" id="category-select-form">
     <div class="form-group">
       <select class="form-control" id="category-select">
         {{#each categories}}
@@ -20,12 +20,12 @@
           data-placement="bottom"></i>
         <div class="middle-info">
           <div class="name">{{ this.name }}</div>
-          <div class="date">{{ dateFormat this.date }}</div>
+          <div class="date">{{ dateFormat "/" this.date}}</div>
         </div>
         <div class="amount">{{ numberFormat this.amount }}</div>
       </li>
       <div class="right-btn-group">
-        <a href="" class="edit-btn btn">修改</a>
+        <a href="/records/edit/{{ this._id }}" class="edit-btn btn">修改</a>
         <a href="" class="delete-btn btn">刪除</a>
       </div>
     </div>
