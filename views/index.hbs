@@ -1,9 +1,11 @@
 <div class="container" style="max-width: 600px;" id="index-page">
   <form action="" id="category-select-form">
     <div class="form-group">
-      <label for="exampleFormControlSelect1">Example select</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
+      <label for="category-select">Example select</label>
+      <select class="form-control" id="category-select">
+        {{#each categories}}
+        <option>{{ this.name }}</option>
+        {{/each}}
       </select>
     </div>
   </form>
@@ -12,20 +14,21 @@
     <span id="total-amount">25260</span>
   </div>
   <ul class="list-group">
+    {{#each records}}
     <div class=" d-flex justify-content-between align-items-center">
       <li class="left-item-info list-group-item d-flex justify-content-between align-items-center">
-        <i class="fas fa-utensils category"></i>
+        <i class="{{ this.category.iconClass }} category"></i>
         <div class="middle-info">
-          <div class="name">午餐</div>
-          <div class="date">2019/04/23</div>
+          <div class="name">{{ this.name }}</div>
+          <div class="date">{{ dateFormat this.date }}</div>
         </div>
-        <div class="amount">60</div>
+        <div class="amount">{{ numberFormat this.amount }}</div>
       </li>
       <div class="right-btn-group">
         <a href="" class="edit-btn btn">修改</a>
         <a href="" class="delete-btn btn">刪除</a>
       </div>
     </div>
+    {{/each}}
   </ul>
-
 </div>
