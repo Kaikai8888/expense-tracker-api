@@ -13,8 +13,13 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="/">Expense Tracker</a>
+  <nav class="navbar navbar-light bg-light ">
+    <div class="navbar-inner-wrapper {{#if isHome}} d-flex justify-content-between align-items-center {{/if}}">
+      <a class="navbar-brand" href="/">Expense Tracker</a>
+      {{#if isHome}}
+      <a href="/records/new" class="btn btn-info">新增支出</a>
+      {{/if}}
+    </div>
   </nav>
 
   {{{ body }}}

@@ -1,6 +1,16 @@
-#index-page .container {
+.navbar-inner-wrapper {
+  width: 700px;
+  margin: 0 auto;
+}
+.container {
   max-width: 600px;
+  margin-top: 50px;
 }
 #category-select-form, #total-amount-wrapper, .left-item-info {
   width: 400px;
+}
+
+.required-mark {
+  color: red;
+  margin: 0 2px;
 }
