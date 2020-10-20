@@ -12,5 +12,12 @@ router.get('/new', (req, res) => {
     .catch(error => console.error(error))
 })
 
+router.post('/', (req, res) => {
+  const input = req.body
+  Record.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
 
 module.exports = router
