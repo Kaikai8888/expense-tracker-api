@@ -11,7 +11,7 @@
   </form>
   <div id="total-amount-wrapper">
     <span class="total-amount-title">總金額</span>
-    <span id="total-amount">25260</span>
+    <span id="total-amount">{{ numberFormat totalAmount }}</span>
   </div>
   <ul class="list-group">
     {{#each records}}

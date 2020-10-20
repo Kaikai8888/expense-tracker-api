@@ -10,7 +10,10 @@ router.get('/', (req, res) => {
       Record.find()
         .populate('category')
         .lean()
-        .then(records => res.render('index', { categories, records }))
+        .then(records => res.render('index', {
+          categories, records,
+          totalAmount: records.reduce((sum, record) => sum + record.amount, 0)
+        }))
         .catch(error => console.error(error)))
     .catch(error => console.error(error))
 })
