@@ -1,0 +1,6 @@
+#index-page .container {
+  max-width: 600px;
+}
+#category-select-form, #total-amount-wrapper, .left-item-info {
+  width: 400px;
+}
