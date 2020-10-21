@@ -30,18 +30,17 @@ router.get('/edit/:id', (req, res) => {
   Record.findById(id)
     .populate('category')
     .lean()
-    .then(record => {
-      if (record) {
-        Category.find()
-          .lean()
-          .then(categories => res.render('new-and-edit',
-            { isEdit: true, today: new Date(), record, categories }))
-          .catch(error => console.error(error))
-      } else {
-        res.render('error', { errorMessage: `Cannot find this expense.` })
-      }
+    .then(record =>
+      Category.find()
+        .lean()
+        .then(categories => res.render('new-and-edit',
+          { isEdit: true, today: new Date(), record, categories }))
+        .catch(error => console.error(error))
+    )
+    .catch(error => {
+      res.render('error', { errorMessage: `Cannot find this expense.` })
+      console.error(error)
     })
-    .catch(error => console.error(error))
 })
 
 router.put('/:id', (req, res) => {
@@ -49,28 +48,31 @@ router.put('/:id', (req, res) => {
   const input = req.body
   Record.findById(id)
     .then(record => {
-      if (record) {
-        Object.assign(record, input)
-        record.save()
-          .then(res.redirect('/'))
-          .catch(error => console.error(error))
-      }
+      Object.assign(record, input)
+      record.save()
+        .then(res.redirect('/'))
+        .catch(error => console.error(error))
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      res.render('error', { errorMessage: `Cannot find this expense.` })
+      console.error(error)
+    })
 })
 
 //delete
 router.delete('/:id', (req, res) => {
   const id = req.params.id
-  // const id = '123'
   Record.findById(id)
     .then(record => record.remove())
     .then(res.redirect('/'))
-    .catch(error => console.error(error))
-
+    .catch(error => {
+      res.render('error', { errorMessage: `Cannot find this expense.` })
+      console.error(error)
+    })
 })
 
 module.exports = router
+
 
 
 
