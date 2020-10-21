@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   Category.find()
     .lean()
     .then(categories => {
-      if (!categories.some(category => category.name === selectedCategory))
+      if (selectedCategory !== 'all' && !categories.some(category => category.name === selectedCategory))
         return res.render('error', { errorMessage: 'Cannot find this category.' })
 
       Record.find()
