@@ -15,11 +15,19 @@ router.get('/', (req, res) => {
         .populate('category')
         .sort({ date: 'asc' })
         .lean()
-        .then(records => res.render('index', {
-          categories, records, selectedCategory,
-          isHome: true,
-          totalAmount: records.reduce((sum, record) => sum + record.amount, 0)
-        }))
+        .then(records => {
+          let totalAmount = 0
+          const filterRecords = records.filter(record => {
+            if (selectedCategory !== 'all' && record.category.name !== selectedCategory) return false
+            totalAmount += record.amount
+            return true
+          })
+          res.render('index', {
+            categories, selectedCategory, totalAmount,
+            records: filterRecords,
+            isHome: true
+          })
+        })
         .catch(error => console.error(error))
     })
     .catch(error => console.error(error))

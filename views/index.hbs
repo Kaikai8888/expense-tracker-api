@@ -16,7 +16,6 @@
   </div>
   <ul class="list-group">
     {{#each records}}
-    {{#if (or (eq ../selectedCategory "all") (eq ../selectedCategory this.category.name))}}
     <div class=" d-flex justify-content-between align-items-center">
       <li class="list-group-item">
         <div class="left-item-info row justify-content-between align-items-center">
@@ -41,7 +40,6 @@
         </form>
       </div>
     </div>
-    {{/if}}
     {{/each}}
   </ul>
 </div>
