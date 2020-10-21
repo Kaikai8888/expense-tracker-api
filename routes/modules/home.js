@@ -20,4 +20,7 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+//filter by category
+
+
 module.exports = router
