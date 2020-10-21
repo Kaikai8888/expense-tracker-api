@@ -29,8 +29,12 @@
       </li>
       <div class="right-btn-group">
         <a href="/records/edit/{{ this._id }}" class="edit-btn btn btn-warning">修改</a>
-        <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-          <button type="submit" class="delete-btn btn btn-danger">刪除</button>
+        <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;" class="delete-form"
+          onsubmit="return confirm(`確定要刪除這筆支出嗎?
+  名稱: {{ this.name }}
+  日期: {{ dateFormat "/" this.date }}
+  金額: {{ numberFormat this.amount }}`)">
+          <button class="delete-btn btn btn-danger">刪除</button>
         </form>
       </div>
     </div>

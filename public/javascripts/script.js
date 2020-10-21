@@ -5,7 +5,6 @@ if (categorySelectForm && categorySelect) {
   categorySelect.addEventListener('change', event => categorySelectForm.submit())
 }
 
-
 //use bootstrap tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
