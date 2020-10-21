@@ -14,8 +14,6 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const input = req.body
-  req.body.name = ' '
-  req.body.amount = -10
   Record.create(req.body)
     .then(() => res.redirect('/'))
     .catch(error => {
