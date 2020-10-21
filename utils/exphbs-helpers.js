@@ -8,5 +8,7 @@ module.exports = {
     return `${date.getFullYear()}${separator}${month}${separator}${day}`
   },
   eq: (a, b) => a === b,
-  and: (a, b) => a && b
+  and: (a, b) => a && b,
+  or: (a, b) => a || b,
+  eqAfterToString: (a_id, b_id) => a_id.toString() === b_id.toString()
 }

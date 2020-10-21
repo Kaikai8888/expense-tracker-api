@@ -1,9 +1,11 @@
 <div class="container" id="index-page">
-  <form action="/" method="POST" id="category-select-form">
+  <form action="/" method="GET" id="category-select-form">
     <div class="form-group">
-      <select class="form-control" id="category-select">
+      <select class="form-control" id="category-select" name="category">
+        <option value="all" {{#if (eq "all" ../selectedCategory)}}selected{{/if}}>All</option>
         {{#each categories}}
-        <option>{{ this.name }}</option>
+        <option value="{{ this.name }}" {{#if (eq this.name ../selectedCategory)}}selected{{/if}}>{{ this.name }}
+        </option>
         {{/each}}
       </select>
     </div>
@@ -14,6 +16,7 @@
   </div>
   <ul class="list-group">
     {{#each records}}
+    {{#if (or (eq ../selectedCategory "all") (eq ../selectedCategory this.category.name))}}
     <div class=" d-flex justify-content-between align-items-center">
       <li class="left-item-info list-group-item d-flex justify-content-between align-items-center">
         <i class="{{ this.category.iconClass }} category" title="{{ this.category.name }}" data-toggle="tooltip"
@@ -31,6 +34,7 @@
         </form>
       </div>
     </div>
+    {{/if}}
     {{/each}}
   </ul>
 </div>

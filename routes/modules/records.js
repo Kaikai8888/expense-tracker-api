@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Category = require('../../models/category.js')
 const Record = require('../../models/record.js')
+const getFormErrorMessage = require('../../models/functions/getFormErrorMessage.js')
 
 //create
 router.get('/new', (req, res) => {
@@ -13,9 +14,14 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const input = req.body
+  req.body.name = ' '
+  req.body.amount = -10
   Record.create(req.body)
     .then(() => res.redirect('/'))
-    .catch(error => console.error(error))
+    .catch(error => {
+      res.render('error', { errorMessage: getFormErrorMessage(error) })
+      console.error(error)
+    })
 })
 
 //edit
