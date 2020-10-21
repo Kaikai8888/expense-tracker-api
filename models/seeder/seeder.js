@@ -12,6 +12,5 @@ db.once('open', () => {
         .catch(error => console.error(error))
     }))
     .catch(error => console.error(error))
-
   console.log('Complete seed data creation.')
 })
