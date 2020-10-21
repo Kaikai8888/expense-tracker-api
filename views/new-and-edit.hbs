@@ -26,7 +26,7 @@
       <div class="col-sm-10">
         <select class="form-control" id="category" name="category" required>
           {{#each categories}}
-          <option value="{{ this._id }}" {{#if (eq ../record.category.name this.name)}}selected{{/if}}>
+          <option value="{{ this._id }}" {{#if (and isEdit (eq ../record.category.name this.name))}}selected{{/if}}>
             {{ this.name }}</option>
           {{/each}}
         </select>
