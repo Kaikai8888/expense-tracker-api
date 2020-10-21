@@ -1,16 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+h4 {
+  font-weight: bolder;
+}
+
 .navbar-inner-wrapper {
-  width: 700px;
+  width: 90%;
+  max-width: 700px;
   margin: 0 auto;
 }
+
 .container {
   max-width: 600px;
   margin-top: 50px;
 }
-#category-select-form, #total-amount-wrapper, .left-item-info {
-  width: 400px;
+
+/* index page */
+
+#category-select-form, #total-amount-wrapper, #index-page li {
+  width: 80%;
+  max-width: 500px;
 }
 
+.left-item-info {
+  width: 100%;
+}
+
+#index-page li {
+  border: none !important;
+}
+
+#index-page ul>div:nth-of-type(odd) li {
+  background: rgb(245, 250, 249);
+}
+
+#index-page .category {
+  font-size: 1.7rem;
+}
+
+#index-page .name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-create {
+  border: 1px solid #ffffff !important;
+}
+
+.btn-create:hover {
+  background: #ffce67;
+  color: #555555;
+  border-color: #ffce67 !important;
+}
+
+#total-amount {
+  font-size: 80px;
+  font-weight: 700;
+  letter-spacing: -5px;
+}
+
+.total-amount-title {
+  margin-top: 20px;
+}
+
+.edit-btn {
+  padding: 4px 6px !important;
+}
+
+/* new-and-edit page */
+#new-edit-page {
+  max-width: 400px;
+}
 .required-mark {
   color: red;
   margin: 0 2px;
 }
+
+
+
+.btn-purple {
+  color: #fff;
+  background-color: #9b479f;
+  border-color: #9b479f; 
+}
+
+.btn-purple:hover {
+    background-image: linear-gradient(#a54caa, #9b479f 6%, #914294);
+    background-repeat: no-repeat;
+    border: 1px solid #853d88;
+}
+

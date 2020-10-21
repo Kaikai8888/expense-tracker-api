@@ -10,31 +10,34 @@
       </select>
     </div>
   </form>
-  <div id="total-amount-wrapper">
+  <div id="total-amount-wrapper" class="d-flex align-items-start justify-content-between">
     <span class="total-amount-title">總金額</span>
-    <span id="total-amount">{{ numberFormat totalAmount }}</span>
+    <span id="total-amount" class="text-danger">{{ numberFormat totalAmount }}</span>
   </div>
   <ul class="list-group">
     {{#each records}}
     {{#if (or (eq ../selectedCategory "all") (eq ../selectedCategory this.category.name))}}
     <div class=" d-flex justify-content-between align-items-center">
-      <li class="left-item-info list-group-item d-flex justify-content-between align-items-center">
-        <i class="{{ this.category.iconClass }} category" title="{{ this.category.name }}" data-toggle="tooltip"
-          data-placement="bottom"></i>
-        <div class="middle-info">
-          <div class="name">{{ this.name }}</div>
-          <div class="date">{{ dateFormat "/" this.date}}</div>
+      <li class="list-group-item">
+        <div class="left-item-info row justify-content-between align-items-center">
+          <i class="{{ this.category.iconClass }} category col-1" title="{{ this.category.name }}" data-toggle="tooltip"
+            data-placement="bottom"></i>
+          <div class="middle-info col-7">
+            <div class="name">{{ this.name }}</div>
+            <div class="date">{{ dateFormat "/" this.date}}</div>
+          </div>
+          <div class="amount col-3 text-right">{{ numberFormat this.amount }}</div>
         </div>
-        <div class="amount">{{ numberFormat this.amount }}</div>
+
       </li>
       <div class="right-btn-group">
-        <a href="/records/edit/{{ this._id }}" class="edit-btn btn btn-warning">修改</a>
+        <a href="/records/edit/{{ this._id }}" class="edit-btn btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
         <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;" class="delete-form"
           onsubmit="return confirm(`確定要刪除這筆支出嗎?
   名稱: {{ this.name }}
   日期: {{ dateFormat "/" this.date }}
   金額: {{ numberFormat this.amount }}`)">
-          <button class="delete-btn btn btn-danger">刪除</button>
+          <button class="delete-btn btn btn-sm btn-secondary"><i class="fas fa-trash-alt"></i></button>
         </form>
       </div>
     </div>
