@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       if (selectedCategory !== 'all' && !categories.some(category => category.name === selectedCategory))
         return res.render('error', { errorMessage: 'Cannot find this category.' })
 
-      Record.find()
+      return Record.find()
         .populate('category')
         .sort({ date: 'asc' })
         .lean()
