@@ -20,6 +20,10 @@ const recordSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0
+  },
+  merchant: {
+    type: String,
+    maxlength: 100
   }
 })
 
