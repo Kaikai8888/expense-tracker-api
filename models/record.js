@@ -9,7 +9,8 @@ const recordSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Category'
+    ref: 'Category',
+    index: true
   },
   date: {
     type: Date,
@@ -24,6 +25,12 @@ const recordSchema = new mongoose.Schema({
   merchant: {
     type: String,
     maxlength: 100
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+    index: true
   }
 })
 
