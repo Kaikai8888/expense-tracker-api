@@ -15,3 +15,4 @@ db.once('open', () => {
     .then(() => console.log('Complete seed data creation.'))
     .catch(error => console.error(error))
 })
+
