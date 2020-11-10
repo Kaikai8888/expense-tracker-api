@@ -7,6 +7,13 @@ module.exports = {
     day = day < 10 ? `0${day}` : day
     return `${date.getFullYear()}${separator}${month}${separator}${day}`
   },
+  toProperCase: (input) => {
+    if (typeof input !== 'string' || !input) return input
+    return input.split(' ').map(subString => {
+      if (!subString) return subString
+      return subString[0].toUpperCase() + subString.slice(1)
+    }).join(' ')
+  },
   eq: (a, b) => a === b,
   and: (a, b) => a && b,
   or: (a, b) => a || b,
