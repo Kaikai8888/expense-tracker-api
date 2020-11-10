@@ -40,10 +40,14 @@ router.post('/register', (req, res, next) => {
         .genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
         .then(hash => User.create({ name, email, password: hash }))
-        .then(() => res.redirect('/'))
+        .then(() => next())
     })
     .catch(error => console.error(error))
-})
+}, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
 
 router.get('/logout', (req, res) => {
   req.logout()
