@@ -5,13 +5,14 @@ const Record = require('../../models/record.js')
 
 router.get('/', (req, res) => {
   const selectedCategory = req.query.category || 'all'
+  const userId = req.user._id
   Category.find()
     .lean()
     .then(categories => {
       if (selectedCategory !== 'all' && !categories.some(category => category.name === selectedCategory))
         return res.render('error', { errorMessage: 'Cannot find this category.' })
 
-      return Record.find()
+      return Record.find({ userId })
         .populate('category')
         .sort({ date: 'asc' })
         .lean()

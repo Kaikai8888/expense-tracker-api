@@ -4,9 +4,7 @@ const passport = require('passport')
 const router = express.Router()
 const User = require('../../models/user.js')
 
-router.get('/login', (req, res) => {
-  res.render('login')
-})
+router.get('/login', (req, res) => res.render('login'))
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
@@ -14,9 +12,7 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true
 }))
 
-router.get('/register', (req, res) => {
-  res.render('register')
-})
+router.get('/register', (req, res) => res.render('register'))
 
 router.post('/register', (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body

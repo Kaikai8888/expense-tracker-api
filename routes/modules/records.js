@@ -13,8 +13,8 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const input = req.body
-  Record.create(req.body)
+  const userId = req.user._id
+  Record.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
     .catch(error => {
       res.render('error', { errorMessage: getFormErrorMessage(error) })
@@ -24,8 +24,9 @@ router.post('/', (req, res) => {
 
 //edit
 router.get('/edit/:id', (req, res) => {
-  const id = req.params.id
-  Record.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  Record.findOne({ _id, userId })
     .populate('category')
     .lean()
     .then(record =>
@@ -42,11 +43,11 @@ router.get('/edit/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-  const input = req.body
-  Record.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  Record.findOne({ _id, userId })
     .then(record => {
-      Object.assign(record, input)
+      Object.assign(record, req.body)
       record.save()
         .then(res.redirect('/'))
         .catch(error => console.error(error))
@@ -59,8 +60,9 @@ router.put('/:id', (req, res) => {
 
 //delete
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  Record.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(res.redirect('/'))
     .catch(error => {
