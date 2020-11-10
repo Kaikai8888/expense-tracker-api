@@ -5,6 +5,9 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 require('./config/mongoose.js')
 const router = require('./routes')
 const helpers = require('./utils/exphbs-helpers.js')
