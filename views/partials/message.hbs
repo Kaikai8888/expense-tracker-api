@@ -1,5 +1,5 @@
 {{#each error}}
-<div class="alert alert-warning alert-dismissible fade show text-dark" role="alert">
+<div class="alert alert-secondary alert-dismissible fade show text-dark" role="alert">
   {{ this.message }}
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -8,8 +8,26 @@
 {{/each}}
 
 {{#if passportMessage}}
-<div class="alert alert-warning alert-dismissible fade show text-dark" role="alert">
+<div class="alert alert-secondary alert-dismissible fade show text-dark" role="alert">
   {{ passportMessage }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+{{#if errorMessage}}
+<div class="alert alert-secondary alert-dismissible fade show text-dark" role="alert">
+  {{ errorMessage }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+{{#if successMessage}}
+<div class="alert alert-warning alert-dismissible fade show text-dark" role="alert">
+  {{ successMessage }}
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

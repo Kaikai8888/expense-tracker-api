@@ -30,6 +30,8 @@ usePassport(app)
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.errorMessage = req.flash('errorMessage')
+  res.locals.successMessage = req.flash('successMessage')
   res.locals.passportMessage = req.flash('error')
   return next()
 })
