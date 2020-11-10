@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const bcrypt = require('bcryptjs')
 const db = require('../../config/mongoose.js')
 const Category = require('../category.js')

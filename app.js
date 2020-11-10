@@ -14,8 +14,8 @@ const helpers = require('./utils/exphbs-helpers.js')
 const usePassport = require('./config/passport.js')
 
 const app = express()
-const PORT = process.env.PORT || 3000
-const URL = process.env.PORT ? 'https://frozen-taiga-94619.herokuapp.com' : 'http://localhost:'
+const PORT = process.env.PORT
+const URL = process.env.BASE_URL
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs', helpers }))
 app.set('view engine', 'hbs')
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use(session({
-  secret: 'fdshjiuryui',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -40,7 +40,6 @@ app.use((req, res, next) => {
 })
 
 app.use(router)
-
 
 app.listen(PORT, () => {
   console.log(`App is listening on ${URL}${PORT}`)
