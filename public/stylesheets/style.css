@@ -45,14 +45,20 @@ h4 {
   font-weight: bold;
 }
 
-.btn-create {
+/* .btn-create {
   border: 1px solid #ffffff !important;
-}
+} */
 
-.btn-create:hover {
+.btn-create {
   background: #ffce67;
   color: #555555;
   border-color: #ffce67 !important;
+}
+
+.btn-create:hover {
+  background: #fac44f; 
+  color: #555555;
+  border-color: #fac44f !important;
 }
 
 #total-amount {
@@ -77,8 +83,6 @@ h4 {
   color: red;
   margin: 0 2px;
 }
-
-
 
 .btn-purple {
   color: #fff;
