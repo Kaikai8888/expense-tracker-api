@@ -40,8 +40,8 @@ router.post('/register', (req, res, next) => {
         .genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
         .then(hash => User.create({ name, email, password: hash }))
+        .then(() => res.redirect('/'))
     })
-    .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
 
