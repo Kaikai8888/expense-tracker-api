@@ -29,7 +29,8 @@ db.once('open', () => {
     .then(results => {
       records.forEach(record => {
         record.category = results[0].find(category => category.name === record.category)._id
-        record.userId = results[1].find(user => user.name === record.userId)._id
+        record.userId = results[1].find(user => user.email === record.userEmail)._id
+        delete record.userEmail
       })
       return Record.insertMany(records)
     })
