@@ -32,8 +32,9 @@
       <div class="right-btn-group">
         <a href="/records/edit/{{ this._id }}" class="edit-btn btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
         <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;" class="delete-form"
-          onsubmit="return confirm(`確定要刪除這筆支出嗎?
+          data-timestamp="{{ this.date }}" onsubmit="return confirm(`確定要刪除這筆支出嗎?
   名稱: {{ this.name }}
+  日期: ${dateFormat('/', new Date(Number(this.dataset.timestamp)))}
   金額: {{ numberFormat this.amount }}`)">
           <button class="delete-btn btn btn-sm btn-secondary"><i class="fas fa-trash-alt"></i></button>
         </form>
