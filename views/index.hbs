@@ -23,7 +23,7 @@
             data-placement="bottom"></i>
           <div class="middle-info col-7">
             <div class="name">{{ this.name }}</div>
-            <div class="date">{{ dateFormat "/" this.date}}</div>
+            <div class="date-field" data-timestamp="{{ this.date }}"></div>
           </div>
           <div class="amount col-3 text-right">{{ numberFormat this.amount }}</div>
         </div>
@@ -34,7 +34,6 @@
         <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;" class="delete-form"
           onsubmit="return confirm(`確定要刪除這筆支出嗎?
   名稱: {{ this.name }}
-  日期: {{ dateFormat "/" this.date }}
   金額: {{ numberFormat this.amount }}`)">
           <button class="delete-btn btn btn-sm btn-secondary"><i class="fas fa-trash-alt"></i></button>
         </form>

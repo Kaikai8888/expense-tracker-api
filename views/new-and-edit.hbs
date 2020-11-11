@@ -17,8 +17,9 @@
     <div class="form-group row">
       <label for="date" class="col-sm-3 col-form-label">日期<span class="required-mark">*</span></label>
       <div class="col-sm-9">
-        <input type="date" class="form-control" id="date" name="date"
-          value={{#if isEdit}}{{ dateFormat "-" record.date}}{{else}}{{ dateFormat "-" today}}{{/if}} required>
+        <input type="date" class="form-control" id="date" data-timestamp="{{ record.date }}" required>
+        {{!-- manage time zone difference --}}
+        <input type="hidden" class="form-control" name="date" id="timestamp" required>
       </div>
     </div>
     <div class="form-group row">

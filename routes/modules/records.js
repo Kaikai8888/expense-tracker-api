@@ -14,6 +14,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.user._id
+  req.body.date = new Date(Number(req.body.date))
   Record.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
     .catch(error => {
@@ -29,12 +30,13 @@ router.get('/edit/:id', (req, res) => {
   Record.findOne({ _id, userId })
     .populate('category')
     .lean()
-    .then(record =>
+    .then(record => {
+      record.date = record.date.getTime()
       Category.find()
         .lean()
         .then(categories => res.render('new-and-edit',
           { isEdit: true, today: new Date(), record, categories }))
-        .catch(error => console.error(error))
+    }
     )
     .catch(error => {
       res.render('error', { errorMessage: `Cannot find this expense.` })
@@ -45,6 +47,7 @@ router.get('/edit/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const _id = req.params.id
   const userId = req.user._id
+  req.body.date = new Date(Number(req.body.date))
   Record.findOne({ _id, userId })
     .then(record => {
       Object.assign(record, req.body)

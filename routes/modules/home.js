@@ -9,8 +9,7 @@ router.get('/', (req, res) => {
   Category.find()
     .lean()
     .then(categories => {
-      if (selectedCategory !== 'all' && !categories.some(category => category.name === selectedCategory))
-        return res.render('error', { errorMessage: 'Cannot find this category.' })
+      if (selectedCategory !== 'all' && !categories.some(category => category.name === selectedCategory)) return res.render('error', { errorMessage: 'Cannot find this category.' })
 
       return Record.find({ userId })
         .populate('category')
@@ -21,6 +20,7 @@ router.get('/', (req, res) => {
           const filterRecords = records.filter(record => {
             if (selectedCategory !== 'all' && record.category.name !== selectedCategory) return false
             totalAmount += record.amount
+            record.date = record.date.getTime()
             return true
           })
           res.render('index', {
@@ -29,7 +29,6 @@ router.get('/', (req, res) => {
             isHome: true
           })
         })
-        .catch(error => console.error(error))
     })
     .catch(error => console.error(error))
 })
