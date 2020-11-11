@@ -19,7 +19,7 @@ h4 {
 
 /* index page */
 
-#category-select-form, #total-amount-wrapper, #index-page li {
+#filter-form, #total-amount-wrapper, #index-page li {
   width: 80%;
   max-width: 500px;
 }

@@ -1,6 +1,9 @@
 <div class="container" id="index-page">
-  <form action="/" method="GET" id="category-select-form">
-    <div class="form-group">
+  <form action="/" method="GET" id="filter-form">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label for=" category-select" class="input-group-text">類別</label>
+      </div>
       <select class="form-control" id="category-select" name="category">
         <option value="all" {{#if (eq "all" ../selectedCategory)}}selected{{/if}}>All</option>
         {{#each categories}}
@@ -8,6 +11,32 @@
         </option>
         {{/each}}
       </select>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span for="year" class="input-group-text">月份</span>
+      </div>
+      <select class="form-control" id="year" name="year">
+        <option value="all" {{#if (eq "all" ../selectedYear)}}selected{{/if}}>All</option>
+        {{#each years}}
+        <option value="{{ this }}" {{#if (eq this.name ../selectedYear)}}selected{{/if}}>{{ this }}
+        </option>
+        {{/each}}
+      </select>
+      <label for="year" class="input-group-text" style="border-radius:0px;">年</label>
+      <select class="form-control" id="month" name="month">
+        <option value="all" {{#if (eq "all" ../selectedMonth)}}selected{{/if}}>All</option>
+        {{#each months}}
+        <option value="{{ this }}" {{#if (eq this.name ../selectedMonth)}}selected{{/if}}>{{ this }}
+        </option>
+        {{/each}}
+      </select>
+      <div class="input-group-append">
+        <label for="month" class="input-group-text">月</label>
+      </div>
+
+
+
     </div>
   </form>
   <div id="total-amount-wrapper" class="d-flex align-items-start justify-content-between">

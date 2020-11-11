@@ -1,4 +1,4 @@
-const categorySelectForm = document.querySelector('#category-select-form')
+const filterForm = document.querySelector('#filter-form')
 const categorySelect = document.querySelector('#category-select')
 const forms = document.querySelectorAll('form')
 const timestampInput = document.querySelector('form #timestamp')
@@ -9,8 +9,8 @@ const deleteForms = document.querySelectorAll('.delete-form')
 
 //Index page
 //Filter by category 
-if (categorySelectForm && categorySelect) {
-  categorySelect.addEventListener('change', event => categorySelectForm.submit())
+if (filterForm && categorySelect) {
+  categorySelect.addEventListener('change', event => filterForm.submit())
 }
 
 // Manage time zone difference
