@@ -17,5 +17,6 @@ module.exports = {
   eq: (a, b) => a === b,
   and: (a, b) => a && b,
   or: (a, b) => a || b,
+  not: (a) => !a,
   eqAfterToString: (a_id, b_id) => a_id.toString() === b_id.toString()
 }

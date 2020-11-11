@@ -4,6 +4,7 @@ const Category = require('../../models/category.js')
 const Record = require('../../models/record.js')
 const getFormErrorMessage = require('../../models/functions/getFormErrorMessage.js')
 
+
 //create
 router.get('/new', (req, res) => {
   Category.find()
