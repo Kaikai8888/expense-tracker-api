@@ -25,9 +25,10 @@ https://frozen-taiga-94619.herokuapp.com
 * create new expense
 * edit existing expense
 * delete expense
-* filter expenses by category, year and month simultaneously
-* search by expense name, and work simultaneously with other filter conditions
-* sort by amount or date, and work simultaneously with other filter conditions
+* filter, search, and sort expense simultaneously:
+  * filter expenses by category, year and month simultaneously
+  * search by expense name
+  * sort by amount or date
 * check subtotal amount of filtered results
 * click X button to clear year and month filtering condition
 * timezone differece issue is managed , and all date value is show in local time
