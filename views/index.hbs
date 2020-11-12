@@ -15,7 +15,7 @@
     </div>
     <div class="input-group">
       <div class="input-group-prepend">
-        <span for="year" class="input-group-text">月份</span>
+        <label for="year" class="input-group-text">月份</label>
       </div>
       <input type="number" step="1" class="form-control" id="year" name="year" value="{{ year }}">
       <label for="year" class="input-group-text rounded-0">年</label>
@@ -23,9 +23,18 @@
       <label for="month" class="input-group-text rounded-0">月</label>
       <div class="input-group-append">
         <button class="btn btn-info" type="submit">篩選</button>
-        <button class="btn btn-secondary rounded-right" type="button" id="clear-year-month">清除</button>
+        <button class="btn btn-secondary rounded-right" type="button" id="clear-year-month">X</button>
       </div>
       <input type="hidden" id="utc-offset" name="utcOffset">
+
+      {{!-- search --}}
+      <div class="input-group mt-3">
+        <input type="search" class="form-control" placeholder="搜尋支出名稱..." id="search" name="search"
+          value="{{ search }}">
+        <div class="input-group-append">
+          <button class="btn btn-info rounded-right" type="submit">搜尋</button>
+        </div>
+      </div>
     </div>
   </form>
 

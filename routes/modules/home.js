@@ -5,8 +5,12 @@ const Record = require('../../models/record.js')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
-  const { category, year, month, utcOffset } = req.query
+  const { category, year, month, utcOffset, search } = req.query
   const conditions = { userId }
+
+  if (search) {
+    conditions.name = { $regex: new RegExp(`${search.trim()}`), $options: 'i' }
+  }
 
   // year and month filtering
   if (year && month && utcOffset) {
@@ -39,7 +43,7 @@ router.get('/', (req, res) => {
             return sum
           }, 0)
           return res.render('index', {
-            category, year, month,
+            category, year, month, search,
             records, categories, totalAmount,
             isHome: true
           })
