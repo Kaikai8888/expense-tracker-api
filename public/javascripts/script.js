@@ -84,14 +84,6 @@ $(function () {
 
 
 //----function----//
-// function dateFormat(separator, date) {
-//   let day = date.getDate()
-//   let month = date.getMonth() + 1
-//   month = month < 10 ? `0${month}` : month
-//   day = day < 10 ? `0${day}` : day
-//   return `${date.getFullYear()}${separator}${month}${separator}${day}`
-// }
-
 
 function setUTCOffset() {
   const utcOffset = document.querySelector('#utc-offset')
@@ -110,3 +102,5 @@ function ensureYearMonthFilter() {
     month.value = '1'
   }
 }
+
+

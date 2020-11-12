@@ -23,7 +23,7 @@ h4 {
 
 /* index page */
 
-#filter-form, #total-amount-wrapper, #index-page li {
+#filter-form, #total-amount-wrapper, #index-page li, #index-page .btn-create {
   width: 80%;
   max-width: 500px;
 }
@@ -99,4 +99,30 @@ h4 {
     background-repeat: no-repeat;
     border: 1px solid #853d88;
 }
+
+#index-page .btn-create {
+  display: none;
+}
+
+@media (max-width: 500px)  {
+  .invisible-mb {
+    display: none;
+  }
+  #index-page .btn-create {
+    display: block;
+  }
+}
+
+@media (max-width: 425px) {
+  #filter-form, #total-amount-wrapper, #index-page .btn-create {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  #index-page li {
+    width: 100%;
+    min-width: 200px;    
+  }
+}
+
 
