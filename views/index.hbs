@@ -22,7 +22,8 @@
       <input type="number" step="1" max="12" min="1" class="form-control" id="month" name="month" value={{ month }}>
       <label for="month" class="input-group-text rounded-0">月</label>
       <div class="input-group-append">
-        <button class="btn btn-info rounded-right" type="submit">篩選</button>
+        <button class="btn btn-info" type="submit">篩選</button>
+        <button class="btn btn-secondary rounded-right" type="button" id="clear-year-month">清除</button>
       </div>
       <input type="hidden" id="utc-offset" name="utcOffset">
     </div>

@@ -1,5 +1,6 @@
 const filterForm = document.querySelector('#filter-form')
 const categorySelect = document.querySelector('#category-select')
+const clearYearMonth = document.querySelector('#clear-year-month')
 const forms = document.querySelectorAll('form')
 const timestampInput = document.querySelector('form #timestamp')
 const dateInput = document.querySelector('form #date')
@@ -18,6 +19,13 @@ if (filterForm) {
   filterForm.addEventListener('submit', () => {
     ensureYearMonthFilter()
     setUTCOffset()
+  })
+
+  clearYearMonth.addEventListener('click', event => {
+    document.querySelector('#year').value = ''
+    document.querySelector('#month').value = ''
+    setUTCOffset() // Manage time zone difference
+    filterForm.submit()
   })
 }
 
