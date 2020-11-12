@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   const { category, year, month, utcOffset } = req.query
   const conditions = { userId }
-  console.log('@@utcOffset: ', utcOffset)
+
+  // year and month filtering
   if (year && month && utcOffset) {
     conditions.$expr = {
       $and: [
