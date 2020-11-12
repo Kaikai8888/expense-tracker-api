@@ -25,11 +25,11 @@ if (filterForm) {
 // Modify client side input: transfer date string into timestamp, and store in hidden input field
 if (timestampInput && dateInput) {
   forms.forEach(form => form.addEventListener('submit', event => {
-    const unixTimestamp = new Date(dateInput.value)
-    timestampInput.value = unixTimestamp.getTime()
+    const unixTimestamp = new Date(dateInput.value).setHours(0)
+    timestampInput.value = unixTimestamp
   }))
 }
-// Modify date value in HTML provided by server: 
+// Modify date value in HTML provided by server:
 if (dateInput) {
   let timestamp = dateInput.dataset.timestamp ? Number(dateInput.dataset.timestamp) : Date.now()
   dateInput.value = dateFormat('-', new Date(timestamp))
@@ -59,7 +59,10 @@ function dateFormat(separator, date) {
 
 function setUTCOffset() {
   const utcOffset = document.querySelector('#utc-offset')
-  utcOffset.value = - (new Date().getTimezoneOffset() / 60)
+  let offset = - (new Date().getTimezoneOffset() / 60)
+  offset = offset > 0 ? '+' + offset : offset
+  offset = Math.abs(offset) < 10 ? offset[0] + '0' + offset[1] : offset
+  utcOffset.value = offset
 }
 
 function ensureYearMonthFilter() {

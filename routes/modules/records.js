@@ -16,6 +16,7 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   const userId = req.user._id
   req.body.date = new Date(Number(req.body.date))
+
   Record.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
     .catch(error => {
@@ -37,8 +38,7 @@ router.get('/edit/:id', (req, res) => {
         .lean()
         .then(categories => res.render('new-and-edit',
           { isEdit: true, today: new Date(), record, categories }))
-    }
-    )
+    })
     .catch(error => {
       res.render('error', { errorMessage: `Cannot find this expense.` })
       console.error(error)

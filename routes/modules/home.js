@@ -5,14 +5,10 @@ const Record = require('../../models/record.js')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
-  const { category, year, month } = req.query
-  let { utcOffset } = req.query
+  const { category, year, month, utcOffset } = req.query
   const conditions = { userId }
-
+  console.log('@@utcOffset: ', utcOffset)
   if (year && month && utcOffset) {
-    //transfer to MongoDB UTC offset format
-    utcOffset = utcOffset > 0 ? '+' + utcOffset : utcOffset
-    utcOffset = Math.abs(utcOffset) < 10 ? utcOffset[0] + '0' + utcOffset[1] : utcOffset
     conditions.$expr = {
       $and: [
         { $eq: [{ $year: { date: '$date', timezone: utcOffset } }, Number(year)] },
