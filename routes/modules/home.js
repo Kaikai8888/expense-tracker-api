@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
           }
 
           return res.render('index', {
-            category, year, month, search, sort,
+            ...req.query,
             records, categories, totalAmount, error,
             isHome: true
           })
