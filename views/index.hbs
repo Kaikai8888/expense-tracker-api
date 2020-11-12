@@ -17,9 +17,9 @@
       <div class="input-group-prepend">
         <span for="year" class="input-group-text">月份</span>
       </div>
-      <input type="number" step="1" class="form-control" id="year" name="year">
+      <input type="number" step="1" class="form-control" id="year" name="year" value="{{ year }}">
       <label for="year" class="input-group-text rounded-0">年</label>
-      <input type="number" step="1" max="12" min="1" class="form-control" id="month" name="month">
+      <input type="number" step="1" max="12" min="1" class="form-control" id="month" name="month" value={{ month }}>
       <label for="month" class="input-group-text rounded-0">月</label>
       <div class="input-group-append">
         <button class="btn btn-info rounded-right" type="submit">篩選</button>
