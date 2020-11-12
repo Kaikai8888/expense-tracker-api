@@ -67,13 +67,13 @@ if (timestampInput && dateInput) {
 // Modify date value in HTML provided by server:
 if (dateInput) {
   let timestamp = dateInput.dataset.timestamp ? Number(dateInput.dataset.timestamp) : Date.now()
-  dateInput.value = dateFormat('-', new Date(timestamp))
+  dateInput.value = new Date(timestamp).toISOString().slice(0, 10)
   dateInput.dataset.timestamp = ''
 }
 
 if (dateFields) {
   dateFields.forEach(date => {
-    date.innerText = dateFormat('/', new Date(Number(date.dataset.timestamp)))
+    date.innerText = new Date(Number(date.dataset.timestamp)).toISOString().slice(0, 10).split('-').join('/')
   })
 }
 
@@ -84,13 +84,14 @@ $(function () {
 
 
 //----function----//
-function dateFormat(separator, date) {
-  let day = date.getDate()
-  let month = date.getMonth() + 1
-  month = month < 10 ? `0${month}` : month
-  day = day < 10 ? `0${day}` : day
-  return `${date.getFullYear()}${separator}${month}${separator}${day}`
-}
+// function dateFormat(separator, date) {
+//   let day = date.getDate()
+//   let month = date.getMonth() + 1
+//   month = month < 10 ? `0${month}` : month
+//   day = day < 10 ? `0${day}` : day
+//   return `${date.getFullYear()}${separator}${month}${separator}${day}`
+// }
+
 
 function setUTCOffset() {
   const utcOffset = document.querySelector('#utc-offset')
