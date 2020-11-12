@@ -3,12 +3,12 @@
   <form action="/" method="GET" id="filter-form" class="mb-5">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <label for=" category-select" class="input-group-text">類別</label>
+        <label for="category-select" class="input-group-text">類別</label>
       </div>
       <select class="form-control" id="category-select" name="category">
-        <option value="all" {{#if (eq "all" ../selectedCategory)}}selected{{/if}}>All</option>
+        <option value="all" {{#if (eq "all" ../category)}}selected{{/if}}>All</option>
         {{#each categories}}
-        <option value="{{ this.name }}" {{#if (eq this.name ../selectedCategory)}}selected{{/if}}>{{ this.name }}
+        <option value="{{ this.name }}" {{#if (eq this.name ../category)}}selected{{/if}}>{{ this.name }}
         </option>
         {{/each}}
       </select>
@@ -17,24 +17,14 @@
       <div class="input-group-prepend">
         <span for="year" class="input-group-text">月份</span>
       </div>
-      <select class="form-control" id="year" name="year">
-        <option value="all" {{#if (or (eq "all" ../selectedYear) (not ../selectedYear))}}selected{{/if}}>All</option>
-        {{#each years}}
-        <option value="{{ this }}" {{#if (eq this ../selectedYear)}}selected{{/if}}>{{ this }}
-        </option>
-        {{/each}}
-      </select>
-      <label for="year" class="input-group-text" style="border-radius:0px;">年</label>
-      <select class="form-control" id="month" name="month">
-        <option value="all" {{#if (or (eq "all" ../selectedMonth) (not ../selectedMonth))}}selected{{/if}}>All</option>
-        {{#each months}}
-        <option value="{{ this }}" {{#if (eq this ../selectedMonth)}}selected{{/if}}>{{ this }}
-        </option>
-        {{/each}}
-      </select>
+      <input type="number" step="1" class="form-control" id="year" name="year">
+      <label for="year" class="input-group-text rounded-0">年</label>
+      <input type="number" step="1" max="12" min="1" class="form-control" id="month" name="month">
+      <label for="month" class="input-group-text rounded-0">月</label>
       <div class="input-group-append">
-        <label for="month" class="input-group-text">月</label>
+        <button class="btn btn-info rounded-right" type="submit">篩選</button>
       </div>
+      <input type="hidden" id="utc-offset" name="utcOffset">
     </div>
   </form>
 
