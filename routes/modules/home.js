@@ -7,19 +7,18 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   const { category, year, month } = req.query
   let { utcOffset } = req.query
-  const yearMonthFilter = {}
-
-  console.log('@@1: ', category, year, month, utcOffset)
+  const conditions = { userId }
 
   if (year && month && utcOffset) {
     //transfer to MongoDB UTC offset format
     utcOffset = utcOffset > 0 ? '+' + utcOffset : utcOffset
     utcOffset = Math.abs(utcOffset) < 10 ? utcOffset[0] + '0' + utcOffset[1] : utcOffset
-    console.log('@@2 utcOffset: ', utcOffset)
-    yearMonthFilter.$and = [
-      { $eq: [{ $year: { date: '$date', timezone: utcOffset } }, Number(year)] },
-      { $eq: [{ $month: { date: '$date', timezone: utcOffset } }, Number(month)] }
-    ]
+    conditions.$expr = {
+      $and: [
+        { $eq: [{ $year: { date: '$date', timezone: utcOffset } }, Number(year)] },
+        { $eq: [{ $month: { date: '$date', timezone: utcOffset } }, Number(month)] }
+      ]
+    }
   }
 
   Category.find()
@@ -27,14 +26,12 @@ router.get('/', (req, res) => {
     .then(categories => {
       //find selected category id
       const categoryDoc = categories.find(item => item.name === category)
-      const categoryId = categoryDoc ? categoryDoc._id : undefined
+      if (categoryDoc || (category && category !== 'all' && !categoryDoc)) {
+        conditions.category = categoryDoc._id
+      }
 
       return Record
-        .find({
-          userId,
-          // category: categoryId,
-          $expr: yearMonthFilter
-        })
+        .find(conditions)
         .populate('category')
         .sort({ date: 'asc' })
         .lean()
