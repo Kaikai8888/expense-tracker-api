@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   const { category, year, month, utcOffset, search } = req.query
   const conditions = { userId }
+  let error
 
   if (search) {
     conditions.name = { $regex: new RegExp(`${search.trim()}`), $options: 'i' }
@@ -42,9 +43,14 @@ router.get('/', (req, res) => {
             record.date = record.date.getTime()
             return sum
           }, 0)
+
+          if (!records.length && category) {
+            error = "查無資料，請確認您的篩選條件"
+          }
+
           return res.render('index', {
             category, year, month, search,
-            records, categories, totalAmount,
+            records, categories, totalAmount, error,
             isHome: true
           })
         })
