@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.font-awesome {
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brand" !important;
+}
+
 h4 {
   font-weight: bolder;
 }

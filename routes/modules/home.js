@@ -2,12 +2,14 @@ const express = require('express')
 const router = express.Router()
 const Category = require('../../models/category.js')
 const Record = require('../../models/record.js')
+const { splitToObject } = require('../../utils/utils.js')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
-  const { category, year, month, utcOffset, search } = req.query
+  const { category, year, month, utcOffset, search, sort } = req.query
   const conditions = { userId }
   let error
+  let sortRule = sort ? splitToObject(sort) : { date: 'asc' }
 
   if (search) {
     conditions.name = { $regex: new RegExp(`${search.trim()}`), $options: 'i' }
@@ -35,7 +37,7 @@ router.get('/', (req, res) => {
       return Record
         .find(conditions)
         .populate('category')
-        .sort({ date: 'asc' })
+        .sort(sortRule)
         .lean()
         .then(records => {
           let totalAmount = records.reduce((sum, record) => {
@@ -49,7 +51,7 @@ router.get('/', (req, res) => {
           }
 
           return res.render('index', {
-            category, year, month, search,
+            category, year, month, search, sort,
             records, categories, totalAmount, error,
             isHome: true
           })

@@ -26,6 +26,8 @@ https://frozen-taiga-94619.herokuapp.com
 * edit existing expense
 * delete expense
 * filter expenses by category, year and month simultaneously
+* search by expense name, and work simultaneously with other filter conditions
+* sort by amount or date, and work simultaneously with other filter conditions
 * check subtotal amount of filtered results
 * click X button to clear year and month filtering condition
 * timezone differece issue is managed , and all date value is show in local time
@@ -33,6 +35,7 @@ https://frozen-taiga-94619.herokuapp.com
 ## UX Features
 
 * confirm before deleting expense record
+* show error message when no results found
 * hover over the category icon to see category name on tooltips
 
 ## Prerequisite

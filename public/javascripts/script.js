@@ -1,6 +1,7 @@
 const filterForm = document.querySelector('#filter-form')
 const categorySelect = document.querySelector('#category-select')
 const clearYearMonth = document.querySelector('#clear-year-month')
+const sortBtns = document.querySelectorAll('#sort-btns button')
 const forms = document.querySelectorAll('form')
 const timestampInput = document.querySelector('form #timestamp')
 const dateInput = document.querySelector('form #date')
@@ -27,7 +28,33 @@ if (filterForm) {
     setUTCOffset() // Manage time zone difference
     filterForm.submit()
   })
+
+  sortBtns.forEach(btn => btn.addEventListener('click', function onSortBtnsClick(event) {
+    const sort = document.querySelector('#sort')
+    switch (this.dataset.sort) {
+      case 'amount-asc':
+        sort.value = 'amount-desc'
+        break
+      case 'amount-desc':
+        sort.value = 'amount-asc'
+        break
+      case 'date-asc':
+        sort.value = 'date-desc'
+        break
+      case 'date-desc':
+        sort.value = 'date-asc'
+        break
+      default:
+        sort.value = 'date-asc'
+        break
+    }
+    ensureYearMonthFilter()
+    setUTCOffset()
+    filterForm.submit()
+  }))
+
 }
+
 
 // Manage time zone difference
 // Modify client side input: transfer date string into timestamp, and store in hidden input field
