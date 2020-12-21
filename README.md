@@ -31,7 +31,7 @@ https://frozen-taiga-94619.herokuapp.com
   * sort by amount or date
 * check subtotal amount of filtered results
 * click X button to clear year and month filtering condition
-* timezone differece issue is managed , and all date value is show in local time
+* timezone difference issue is managed , and all date value is shown in local time
 
 ## UX Features
 
@@ -56,8 +56,8 @@ https://frozen-taiga-94619.herokuapp.com
 ## Installation
 1. Enter ` git clone https://github.com/Kaikai8888/expense-tracker.git ` in the terminal to download the project folder
 2. Use robo 3T to manipulate mongoDB, create connection to `localhost: 27017`, and create the database,`expense-tracker`
-3. Follow `.env.example` to create `.env` file to set up enviromental variables
+3. Follow `.env.example` to create `.env` file to set up environmental variables
 4. Enter `npm run seed` in the terminal to to run seeder.js with nodemon and create seed data
 5. Enter `npm run dev` in the terminal to run app.js with nodemon to set up database connection and start local server 
-6. Enter http://localhost:3000 in the brower and enter the website
+6. Enter http://localhost:3000 in the browser and enter the website
 
