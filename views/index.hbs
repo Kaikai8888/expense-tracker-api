@@ -84,7 +84,7 @@
           <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;"
             class="delete-form" data-timestamp="{{ this.date }}" onsubmit="return confirm(`確定要刪除這筆支出嗎?
               名稱: {{ this.name }}
-              日期: ${dateFormat('/', new Date(Number(this.dataset.timestamp)))}
+              日期: ${new Date(Number(this.dataset.timestamp)).toISOString().slice(0, 10)}
               金額: {{ numberFormat this.amount }}`)">
             <button class="btn btn-record"><i class="fas fa-trash-alt"></i></button>
           </form>
