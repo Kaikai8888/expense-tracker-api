@@ -6,7 +6,7 @@
         <a href="/records/new" class="btn btn-info">新增支出</a>
       </div>
       <div class="col">
-        <select class="form-control" id="category-select" name="category">
+        <select class="form-control" id="category" name="category">
           <option value="all" {{#if (eq "all" ../category)}}selected{{/if}}>All</option>
           {{#each categories}}
           <option value="{{ this.name }}" {{#if (eq this.name ../category)}}selected{{/if}}>{{ this.name }}
@@ -15,32 +15,29 @@
         </select>
       </div>
       <div class="col">
-        <input type="month" class="form-control" value="{{year}}-{{month}}">
+        <input type="month" class="form-control" id="month" name="month" value="{{year}}-{{month}}">
         <input type="hidden" id="utc-offset" name="utcOffset">
       </div>
       <div class="col">
-        <select type="text" class="form-control">
-          <option value="date-desc">日期: 新 - 舊</option>
-          <option value="date-asc">日期: 舊 - 新</option>
-          <option value="amount-desc">金額: 大 - 小</option>
-          <option value="amount-asc">金額: 小 - 大</option>
+        <select type="text" class="form-control" name="sort" id="sort">
+          <option value="date-desc" {{#if (eq sort 'date-desc' )}}selected{{/if}}>日期: 新 - 舊</option>
+          <option value="date-asc" {{#if (eq sort 'date-asc' )}}selected{{/if}}>日期: 舊 - 新</option>
+          <option value="amount-desc" {{#if (eq sort 'amount-desc' )}}selected{{/if}}>金額: 大 - 小</option>
+          <option value="amount-asc" {{#if (eq sort 'amount-asc' )}}selected{{/if}}>金額: 小 - 大</option>
         </select>
       </div>
       <div class="col">
         <input type="search" class="form-control" placeholder="搜尋支出名稱..." id="search" name="search"
           value="{{ search }}">
       </div>
-      {{!-- <div class="input-group-append">
-        <button class="btn btn-info" type="submit">篩選</button>
-        <button class="btn btn-secondary rounded-right" type="button" id="clear-year-month">X</button>
-      </div> --}}
+
+
+
     </div>
-
-    {{!-- sorting --}}
-    {{!-- <input type="hidden" id="sort" name="sort" value="{{ sort }}"> --}}
-
-    {{!-- error message --}}
-    <p class="text-muted mt-2 text-right">{{ error }}</p>
+    <div class="row">
+      {{!-- error message --}}
+      <p class="col text-muted mt-2 text-right">{{ error }}</p>
+    </div>
   </form>
 
 

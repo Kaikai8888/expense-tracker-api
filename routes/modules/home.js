@@ -6,6 +6,7 @@ const { splitToObject } = require('../../utils/utils.js')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
+  console.log('@@', req.query)
   const { category, year, month, utcOffset, search, sort } = req.query
   const conditions = { userId }
   let error
