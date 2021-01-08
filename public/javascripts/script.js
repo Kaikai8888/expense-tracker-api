@@ -4,6 +4,7 @@ const category = document.querySelector('#category')
 const sort = document.querySelector('#sort')
 const month = document.querySelector('#month')
 const dateFields = document.querySelectorAll('.date-field')
+const clearFilterBtn = document.querySelector('.clear-filter')
 // const clearYearMonth = document.querySelector('#clear-year-month')
 // const sortBtns = document.querySelectorAll('#sort-btns button')
 
@@ -26,6 +27,14 @@ if (filterForm) {
   filterForm.addEventListener('submit', () => {
     // ensureYearMonthFilter()
     setUTCOffset()
+  })
+
+  clearFilterBtn.addEventListener('click', event => {
+    category.selectedIndex = '0'
+    sort.selectedIndex = '0'
+    month.value = ''
+    search.value = ''
+    filterForm.submit()
   })
 
   // clearYearMonth.addEventListener('click', event => {

@@ -83,6 +83,19 @@ h4 {
   padding: 4px 6px !important;
 }
 
+.clear-filter {
+  position: relative;
+}
+
+.clear-filter::before {
+  content: 'X';
+  position: absolute;
+  bottom: 3px;
+  right: 12px;
+  color: red;
+  font-size: 0.5rem;
+  font-weight: 900;
+}
 /* new-and-edit page */
 #new-edit-page {
   max-width: 400px;

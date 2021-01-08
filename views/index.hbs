@@ -1,43 +1,35 @@
 <div class="container" id="index-page">
   {{!-- filtering --}}
   <form action="/" method="GET" id="filter-form" class="mb-5">
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/records/new" class="btn btn-info">新增支出</a>
-      </div>
-      <div class="col">
-        <select class="form-control" id="category" name="category">
+    <div class="d-flex mb-3 justify-content-between">
+      <a href="/records/new" class="btn btn-info"> + 支出</a>
+      <div class="d-flex">
+        <button type="reset" class="btn btn-light mr-1 clear-filter">
+          <i class="fas fa-filter"></i>
+        </button>
+        <select class="form-control mr-1" id="category" name="category">
           <option value="all" {{#if (eq "all" ../category)}}selected{{/if}}>All</option>
           {{#each categories}}
           <option value="{{ this.name }}" {{#if (eq this.name ../category)}}selected{{/if}}>{{ this.name }}
           </option>
           {{/each}}
         </select>
-      </div>
-      <div class="col">
-        <input type="month" class="form-control" id="month" name="month" value="{{month}}">
+        <input type="month" class="form-control mr-1" id="month" name="month" value="{{month}}">
         <input type="hidden" id="utc-offset" name="utcOffset">
-      </div>
-      <div class="col">
-        <select type="text" class="form-control" name="sort" id="sort">
-          <option value="date-desc" {{#if (eq sort 'date-desc' )}}selected{{/if}}>日期: 新 - 舊</option>
+        <select type="text" class="form-control mr-1" name="sort" id="sort">
           <option value="date-asc" {{#if (eq sort 'date-asc' )}}selected{{/if}}>日期: 舊 - 新</option>
+          <option value="date-desc" {{#if (eq sort 'date-desc' )}}selected{{/if}}>日期: 新 - 舊</option>
           <option value="amount-desc" {{#if (eq sort 'amount-desc' )}}selected{{/if}}>金額: 大 - 小</option>
           <option value="amount-asc" {{#if (eq sort 'amount-asc' )}}selected{{/if}}>金額: 小 - 大</option>
         </select>
-      </div>
-      <div class="col">
-        <input type="search" class="form-control" placeholder="搜尋支出名稱..." id="search" name="search"
+        <input type="search" class="form-control mr-1" placeholder="搜尋支出名稱..." id="search" name="search"
           value="{{ search }}">
       </div>
-
-
-
     </div>
-    <div class="row">
-      {{!-- error message --}}
-      <p class="col text-muted mt-2 text-right">{{ error }}</p>
-    </div>
+
+    {{!-- error message --}}
+    <p class="col text-muted mt-2 text-center">{{ error }}</p>
+
   </form>
 
 
