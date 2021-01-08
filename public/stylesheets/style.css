@@ -57,7 +57,7 @@ h4 {
 }
 
 
-.btn-yellow {
+/* .btn-yellow {
   background: #ffce67;
   color: #555555;
   border-color: #ffce67 !important;
@@ -67,7 +67,7 @@ h4 {
   background: #fac44f; 
   color: #555555;
   border-color: #fac44f !important;
-}
+} */
 
 #total-amount {
   font-size: 80px;
@@ -105,7 +105,7 @@ h4 {
   margin: 0 2px;
 }
 
-.btn-purple {
+/* .btn-purple {
   color: #fff;
   background-color: #9b479f;
   border-color: #9b479f; 
@@ -115,7 +115,7 @@ h4 {
     background-image: linear-gradient(#a54caa, #9b479f 6%, #914294);
     background-repeat: no-repeat;
     border: 1px solid #853d88;
-}
+} */
 
 
 @media (min-width: 576px ) {
