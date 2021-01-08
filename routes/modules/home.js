@@ -6,8 +6,7 @@ const { splitToObject } = require('../../utils/utils.js')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
-  console.log('@@', req.query)
-  const { category, year, month, utcOffset, search, sort } = req.query
+  const { category, month, utcOffset, search, sort } = req.query
   const conditions = { userId }
   let error
   let sortRule = sort ? splitToObject(sort) : { date: 'asc' }
@@ -17,11 +16,12 @@ router.get('/', (req, res) => {
   }
 
   // year and month filtering
-  if (year && month && utcOffset) {
+  if (month && utcOffset) {
+    const [year, monthString] = month.split('-')
     conditions.$expr = {
       $and: [
         { $eq: [{ $year: { date: '$date', timezone: utcOffset } }, Number(year)] },
-        { $eq: [{ $month: { date: '$date', timezone: utcOffset } }, Number(month)] }
+        { $eq: [{ $month: { date: '$date', timezone: utcOffset } }, Number(monthString)] }
       ]
     }
   }
