@@ -22,12 +22,12 @@ if (filterForm) {
     setUTCOffset()
   })
 
-  clearYearMonth.addEventListener('click', event => {
-    document.querySelector('#year').value = ''
-    document.querySelector('#month').value = ''
-    setUTCOffset() // Manage time zone difference
-    filterForm.submit()
-  })
+  // clearYearMonth.addEventListener('click', event => {
+  //   document.querySelector('#year').value = ''
+  //   document.querySelector('#month').value = ''
+  //   setUTCOffset() // Manage time zone difference
+  //   filterForm.submit()
+  // })
 
   sortBtns.forEach(btn => btn.addEventListener('click', function onSortBtnsClick(event) {
     const sort = document.querySelector('#sort')

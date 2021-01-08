@@ -112,30 +112,6 @@ h4 {
     border: 1px solid #853d88;
 }
 
-#index-page .btn-create {
-  display: none;
-}
-
-@media (max-width: 500px)  {
-  .invisible-mb {
-    display: none;
-  }
-  #index-page .btn-create {
-    display: block;
-  }
-}
-
-/* @media (max-width: 425px) {
-  #filter-form, #total-amount-wrapper, #index-page .btn-create {
-    width: 100%;
-    min-width: 300px;
-  }
-
-  #index-page li {
-    width: 100%;
-    min-width: 200px;    
-  }
-} */
 
 @media (min-width: 576px ) {
   #index-page .list-group-item {

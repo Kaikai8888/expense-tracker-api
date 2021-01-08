@@ -14,16 +14,13 @@
 <body>
   <nav class="navbar navbar-dark bg-primary fixed-top">
     <div class="navbar-inner-wrapper d-flex justify-content-between align-items-center">
-      <a class="navbar-brand mr-auto" href="/"><span
-          class="invisible-mb br-1">{{#if user.name}}{{toProperCase user.name}}'s {{/if}}</span>Expense
+      <a class="navbar-brand mr-auto" href="/"><span class="invisible-mb br-1">{{#if user.name}}{{toProperCase
+          user.name}}'s {{/if}}</span>Expense
         Tracker</a>
-      {{#if isHome}}
-      <a href="/records/new" class="btn btn-create invisible-mb">新增支出</a>
-      {{/if}}
       {{#if isAuthenticated}}
-      <a href="/users/logout" class="btn btn-secondary ml-3">登出</a>
+      <a href="/users/logout" class="btn btn-outline-light ml-3">登出</a>
       {{else}}
-      <a href="/users/login" class="btn btn-warning ml-3 text-dark">登入</a>
+      <a href="/users/login" class="btn btn-outline-light ml-3 text-dark">登入</a>
       {{/if}}
     </div>
   </nav>

@@ -1,50 +1,49 @@
 <div class="container" id="index-page">
   {{!-- filtering --}}
   <form action="/" method="GET" id="filter-form" class="mb-5">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label for="category-select" class="input-group-text">類別</label>
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/records/new" class="btn btn-create">新增支出</a>
       </div>
-      <select class="form-control" id="category-select" name="category">
-        <option value="all" {{#if (eq "all" ../category)}}selected{{/if}}>All</option>
-        {{#each categories}}
-        <option value="{{ this.name }}" {{#if (eq this.name ../category)}}selected{{/if}}>{{ this.name }}
-        </option>
-        {{/each}}
-      </select>
-    </div>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <label for="year" class="input-group-text">月份</label>
+      <div class="col">
+        <select class="form-control" id="category-select" name="category">
+          <option value="all" {{#if (eq "all" ../category)}}selected{{/if}}>All</option>
+          {{#each categories}}
+          <option value="{{ this.name }}" {{#if (eq this.name ../category)}}selected{{/if}}>{{ this.name }}
+          </option>
+          {{/each}}
+        </select>
       </div>
-      <input type="number" step="1" class="form-control" id="year" name="year" value="{{ year }}">
-      <label for="year" class="input-group-text rounded-0">年</label>
-      <input type="number" step="1" max="12" min="1" class="form-control" id="month" name="month" value={{ month }}>
-      <label for="month" class="input-group-text rounded-0">月</label>
-      <div class="input-group-append">
-        <button class="btn btn-info" type="submit">篩選</button>
-        <button class="btn btn-secondary rounded-right" type="button" id="clear-year-month">X</button>
+      <div class="col">
+        <input type="month" class="form-control" value="{{year}}-{{month}}">
+        <input type="hidden" id="utc-offset" name="utcOffset">
       </div>
-      <input type="hidden" id="utc-offset" name="utcOffset">
-
-      {{!-- search --}}
-      <div class="input-group mt-3">
+      <div class="col">
+        <select type="text" class="form-control">
+          <option value="date-desc">日期: 新 - 舊</option>
+          <option value="date-asc">日期: 舊 - 新</option>
+          <option value="amount-desc">金額: 大 - 小</option>
+          <option value="amount-asc">金額: 小 - 大</option>
+        </select>
+      </div>
+      <div class="col">
         <input type="search" class="form-control" placeholder="搜尋支出名稱..." id="search" name="search"
           value="{{ search }}">
-        <div class="input-group-append">
-          <button class="btn btn-info rounded-right" type="submit">搜尋</button>
-        </div>
       </div>
+      {{!-- <div class="input-group-append">
+        <button class="btn btn-info" type="submit">篩選</button>
+        <button class="btn btn-secondary rounded-right" type="button" id="clear-year-month">X</button>
+      </div> --}}
     </div>
 
     {{!-- sorting --}}
-    <input type="hidden" id="sort" name="sort" value="{{ sort }}">
+    {{!-- <input type="hidden" id="sort" name="sort" value="{{ sort }}"> --}}
 
     {{!-- error message --}}
     <p class="text-muted mt-2 text-right">{{ error }}</p>
   </form>
 
-  <a href="/records/new" class="btn btn-create btn-block visible-mb">新增支出</a>
+
 
   {{!-- data panel --}}
   {{!-- <div class="d-flex flex-wrap align-items-end justify-content-between">
