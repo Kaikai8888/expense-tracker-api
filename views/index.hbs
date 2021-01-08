@@ -1,6 +1,13 @@
 <div class="container" id="index-page">
+  <div id="data-panel" class="mb-3">
+    <div id="total-amount-wrapper" class="d-flex flex-wrap align-items-start">
+      <span class="total-amount-title mr-2">總金額</span>
+      <span id="total-amount" class="text-danger">{{ numberFormat totalAmount }}</span>
+    </div>
+  </div>
+
   {{!-- filtering --}}
-  <form action="/" method="GET" id="filter-form" class="mb-5">
+  <form action="/" method="GET" id="filter-form" class="mb-1">
     <div class="d-flex mb-3 justify-content-between">
       <a href="/records/new" class="btn btn-info"> + 支出</a>
       <div class="d-flex">
@@ -31,28 +38,6 @@
     <p class="col text-muted mt-2 text-center">{{ error }}</p>
 
   </form>
-
-
-
-  {{!-- data panel --}}
-  {{!-- <div class="d-flex flex-wrap align-items-end justify-content-between">
-    <div id="total-amount-wrapper" class="d-flex flex-wrap align-items-start justify-content-between pt-3">
-      <span class="total-amount-title">總金額</span>
-      <span id="total-amount" class="text-danger">{{ numberFormat totalAmount }}</span>
-    </div>
-    <div id="sort-btns">
-      <button class="btn btn-success btn-sm" id="amount-sort" title="金額排序" data-toggle="tooltip" data-placement="bottom"
-        data-sort="{{#if (eq sort 'amount-desc')}}amount-desc{{else}}amount-asc{{/if}}" style="font-size: 1.2rem">
-        <i class="fas {{#if (eq sort 'amount-desc')}}fa-sort-amount-up-alt{{else}}fa-sort-amount-down-alt{{/if}}"></i>
-      </button>
-      <button class="btn btn-success btn-sm" id="date-sort" title="日期排序" data-toggle="tooltip" data-placement="bottom"
-        data-sort="{{#if (eq sort 'date-desc')}}date-desc{{else}}date-asc{{/if}}" style="font-size: 1.2rem">
-        <i class="fas {{#if (eq sort 'date-desc')}}fa-sort-numeric-up{{else}}fa-sort-numeric-down{{/if}}"></i>
-      </button>
-    </div>
-
-  </div> --}}
-
 
   <ul class="list-group">
     {{#each records}}
