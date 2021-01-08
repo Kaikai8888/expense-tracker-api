@@ -24,11 +24,6 @@ h4 {
 
 /* index page */
 
-#filter-form, #total-amount-wrapper, #index-page li, #index-page .btn-create {
-  /* width: 80%; */
-  /* max-width: 500px; */
-}
-
 #index-page .list-group-item {
   border: none !important;
   padding-right: 0 !important;
@@ -61,17 +56,14 @@ h4 {
   color: #aaa;
 }
 
-/* .btn-create {
-  border: 1px solid #ffffff !important;
-} */
 
-.btn-create {
+.btn-yellow {
   background: #ffce67;
   color: #555555;
   border-color: #ffce67 !important;
 }
 
-.btn-create:hover {
+.btn-yellow:hover {
   background: #fac44f; 
   color: #555555;
   border-color: #fac44f !important;
