@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Category = require('../../models/category.js')
 const Record = require('../../models/record.js')
-const getFormErrorMessage = require('../../models/functions/getFormErrorMessage.js')
-
 
 //create
 router.get('/new', (req, res, next) => {

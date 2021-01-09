@@ -33,7 +33,6 @@ module.exports = (req) => {
       if (categoryDoc || (category && category !== 'all' && !categoryDoc)) {
         conditions.category = categoryDoc._id
       }
-      // throw new Error('@@error')
       return Record
         .find(conditions)
         .populate('category')
@@ -49,10 +48,10 @@ module.exports = (req) => {
           if (!records.length && category) {
             error = "查無資料，請確認您的篩選條件"
           }
-          // console.log('@@ inside getRecords', records)
           return {
             ...req.query,
-            records, categories, totalAmount, error
+            records, categories, totalAmount, error,
+            isHome: true
           }
         })
     })
