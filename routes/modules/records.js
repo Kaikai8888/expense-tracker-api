@@ -6,27 +6,24 @@ const getFormErrorMessage = require('../../models/functions/getFormErrorMessage.
 
 
 //create
-router.get('/new', (req, res) => {
+router.get('/new', (req, res, next) => {
   Category.find()
     .lean()
     .then(categories => res.render('new-and-edit', { today: new Date(), categories }))
-    .catch(error => console.error(error))
+    .catch(error => next(error))
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const userId = req.user._id
   req.body.date = new Date(Number(req.body.date))
 
   Record.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
-    .catch(error => {
-      res.render('error', { errorMessage: getFormErrorMessage(error) })
-      console.error(error)
-    })
+    .catch(error => next(error))
 })
 
 //edit
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', (req, res, next) => {
   const _id = req.params.id
   const userId = req.user._id
   Record.findOne({ _id, userId })

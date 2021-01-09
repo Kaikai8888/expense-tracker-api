@@ -4,7 +4,7 @@ const getRecords = require('../../services/getRecords.js')
 
 router.get('/records', (req, res) => {
   getRecords(req)
-    .then((data) => res.json(data))
+    .then(data => res.json(data))
     .catch(error => next(error))
 })
 

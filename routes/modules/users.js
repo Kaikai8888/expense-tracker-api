@@ -42,7 +42,10 @@ router.post('/register', (req, res, next) => {
         .then(hash => User.create({ name, email, password: hash }))
         .then(() => next())
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      res.render('register', { ...req.body, errorMessage: '錯誤發生，請稍後再試' })
+      console.log(error)
+    })
 }, passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login',
