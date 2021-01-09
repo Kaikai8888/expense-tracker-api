@@ -6,6 +6,7 @@ router.get('/records', (req, res, next) => {
   getRecords(req)
     .then(data => {
       if (data.error) return res.json({ status: 'error', message: data.error })
+      // const groupedData = data.
       res.json(data.records)
     })
     .catch(error => next(error))
