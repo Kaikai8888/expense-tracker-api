@@ -40,6 +40,12 @@ app.use((req, res, next) => {
 })
 
 app.use(router)
+app.use((error, req, res, next) => {
+  console.log(error)
+  if (req.url.startsWith('/api/')) return res.status('400').json({ status: 'error', message: 'error occurs' })
+  req.flash('errorMessage', '錯誤發生，請稍後再試')
+  return res.redirect('back')
+})
 
 app.listen(PORT, () => {
   console.log(`App is listening on ${URL}${PORT}`)
