@@ -45,6 +45,8 @@ h4 {
   top: calc(50% - 1em / 2 - 24px);
   width: 100%;
   text-align: center;
+  font-size: 60px;
+  font-weight: 700;
 }
 
 
@@ -82,11 +84,7 @@ h4 {
 
 
 
-#total-amount {
-  font-size: 80px;
-  font-weight: 700;
-  letter-spacing: -5px;
-}
+
 
 .total-amount-title {
   margin-top: 20px;
@@ -103,8 +101,8 @@ h4 {
 .clear-filter::before {
   content: 'X';
   position: absolute;
-  bottom: 3px;
-  right: 12px;
+  bottom: 10%;
+  right: 48%;
   color: red;
   font-size: 0.5rem;
   font-weight: 900;
@@ -119,13 +117,25 @@ h4 {
 }
 
 
-@media (min-width: 576px ) {
+@media screen and (min-width: 576px ) {
   #index-page .list-group-item {
-  border: none !important;
-  padding-right: 0.75rem !important;
-  padding-left: 0.75rem !important;
+    border: none !important;
+    padding-right: 0.75rem !important;
+    padding-left: 0.75rem !important;  
+  }
+
+  #total-amount {
+    font-size: 80px;
+    letter-spacing: -5px;
+  }
 }
+
+@media screen and (min-width: 768px ) and (max-width: 990px){
+  .filter-form-break {
+    width: 100%;
+  }
 }
+
 
 
 
