@@ -1,12 +1,10 @@
 const params = (new URL(document.location)).searchParams.toString()
 const chart = document.querySelector('#chart').getContext('2d')
 const dataPanel = document.querySelector('#data-panel')
-// const palette = ['rgba(245, 127, 155, 0.5)', 'rgba(201, 177, 175, 0.5)', 'rgba(120, 194, 173, 0.5)', 'rgba(37, 130, 167, 0.5)', 'rgba(127, 214, 245, 0.5)']
 const palette = ['rgba(127, 214, 245, 0.5)', 'rgba(37, 130, 167, 0.5)', 'rgba(120, 194, 173, 0.5)', 'rgba(201, 177, 175, 0.5)', 'rgba(245, 127, 155, 0.5)']
 
 axios.get(`/api/records?${params}`)
   .then(response => {
-    // console.log('response', response)
     if (response.data.status === 'error') return
     const data = response.data.reduce((data, record) => {
       data.datasets[0].data.push(record.subTotalAmount)

@@ -35,7 +35,7 @@ if (filterForm) {
 // Modify client side input: transfer date string into timestamp, and store in hidden input field
 if (timestampInput && dateInput) {
   forms.forEach(form => form.addEventListener('submit', event => {
-    const unixTimestamp = new Date(dateInput.value).setHours(0)
+    const unixTimestamp = new Date(dateInput.value).getTime()
     timestampInput.value = unixTimestamp
   }))
 }
