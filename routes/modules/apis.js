@@ -32,7 +32,8 @@ router.get('/records', (req, res, next) => {
             foreignField: '_id',
             as: 'category_docs'
           }
-        }
+        },
+        { $sort: { subTotalAmount: -1 } }
       ]
 
       return Record
