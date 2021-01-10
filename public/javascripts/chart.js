@@ -6,11 +6,10 @@ axios.get(`/api/records?${params}`)
     console.log('response', response)
     if (response.data.status === 'error') return
     const data = response.data.reduce((data, record) => {
-      data.datasets[0].data.push(record.amount)
-      data.labels.push(record.name)
+      data.datasets[0].data.push(record.subTotalAmount)
+      data.labels.push(record.category_docs[0].name)
       return data
     }, { datasets: [{ data: [] }], labels: [] })
-    console.log('@@', data)
 
     const pieChart = new Chart(chart, {
       type: 'pie',
