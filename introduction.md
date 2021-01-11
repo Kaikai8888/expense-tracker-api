@@ -4,7 +4,7 @@
 
 程式請點[這裡](https://github.com/Kaikai8888/expense-tracker)，網站請點[這裡](https://frozen-taiga-94619.herokuapp.com/)
 
-![](https://github.com/Kaikai8888/expense-tracker/raw/master/screenshot/home-page-screenshot.png)
+![](https://github.com/Kaikai8888/expense-tracker/raw/master/screenshot/expense-tracker-demo-4.gif)
 
 以下透過問答的方式，簡單介紹這支專案及分享開發的心得:
 
