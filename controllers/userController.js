@@ -1,7 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
-const passport = require('./config/passport.js')
-const User = require('../../models/user.js')
+const jwt = require('jsonwebtoken')
+const User = require('../models/user.js')
 const successMsgs = require('../docs/messages.json')
 
 module.exports = {
@@ -9,7 +9,6 @@ module.exports = {
     try {
       const { email, password } = req.body
       const user = await User.findOne({ email })
-      const user = result[0]
       if (!user) throw new Error('notRegister')
       if (!bcrypt.compareSync(password, user.password)) throw new Error('wrongPassword')
 
