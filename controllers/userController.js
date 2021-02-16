@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const redis = require('../config/redis.js')
 const User = require('../models/user.js')
 const { success: successMsgs } = require('../docs/messages.json')
 
@@ -7,7 +8,7 @@ module.exports = {
   async signIn(req, res, next) {
     try {
       const { email, password } = req.body
-      const user = await User.findOne({ email })
+      const user = await User.findOne({ email }).lean()
       if (!user) throw new Error('notRegister')
       if (!bcrypt.compareSync(password, user.password)) throw new Error('wrongPassword')
 
@@ -28,10 +29,10 @@ module.exports = {
       const { iat, exp } = payload
       try {
         await redis.setAsync(token, exp, 'EX', exp - iat)
+        return res.json({ status: 'success', message: successMsgs.general })
       } catch (error) {
         next(error)
       }
-      return res.json({ status: 'success', message: successMsgs.general })
     })
   },
   async signUp(req, res, next) {

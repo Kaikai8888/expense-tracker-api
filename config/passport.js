@@ -16,9 +16,9 @@ passport.use(new JwtStrategy(opts, async (req, payload, done) => {
     const exist = await redis.existsAsync(token)
     if (exist) return done(null, false)
     const { id } = payload
-    const user = await User.findByPk(id, { attributes: { excluded: 'password' } })
+    const user = await User.findById(id, 'name email').lean()
     if (!user) return done(null, false)
-    return done(null, user.toJSON())
+    return done(null, user)
   } catch (error) {
     done(error, false)
   }
