@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Expense Tracker
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api
+    description: local development version
+paths: 
+  /records:
+    get:
+      summery: get all records with filters
+      parameters: 
+        - in: query
+          name: month 
+          description: YYYY-MM
+          schema:
+            type: string
+        - in: query
+          name: utcOffset
+          description: "timezone, e.g.: +8, -8"
+          schema:
+            type: string
+          example: '+8'
+        - in: query
+          name: search
+          description: keywords of record name
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: '[field name]-[desc or asc]'
+          schema:
+            type: string
+          example: name-desc
+        - in: query
+          name: category
+          schema:
+            type: string
+

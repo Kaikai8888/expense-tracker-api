@@ -1,5 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -14,7 +17,12 @@ const errMsgs = require('./docs/messages.json')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(passport.initialize())
 app.use('/api', router)
-app.use('/', (req, res) => res.send('This is the backend server for expense tracker.'))
+app.get('/api-docs', swaggerUi.serve, swaggerUi.setup(YAML.load('./docs/api-doc.yaml')))
+app.get('/', (req, res) => res.send(`
+<p>This is the backend server for expense tracker.</p>
+<a href="/api-docs">API Document</a>
+`))
+
 app.use((error, req, res, next) => {
   for (let code in errMsgs) {
     if (!parseInt(code)) continue
