@@ -13,11 +13,12 @@ const app = express()
 const PORT = process.env.PORT
 const URL = process.env.BASE_URL
 const errMsgs = require('./docs/messages.json')
+const swaggerDoc = YAML.load('./docs/api-doc.yaml')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(passport.initialize())
 app.use('/api', router)
-app.get('/api-docs', swaggerUi.serve, swaggerUi.setup(YAML.load('./docs/api-doc.yaml')))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 app.get('/', (req, res) => res.send(`
 <p>This is the backend server for expense tracker.</p>
 <a href="/api-docs">API Document</a>

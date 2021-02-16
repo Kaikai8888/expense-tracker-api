@@ -9,7 +9,7 @@ servers:
 paths: 
   /records:
     get:
-      summery: get all records with filters
+      summary: get all records with filters
       parameters: 
         - in: query
           name: month 
@@ -46,8 +46,7 @@ paths:
                 type: object
                 properties:
                   records:
-                    schema:
-                      $ref: '#/components/schemas/Records'
+                    $ref: '#/components/schemas/Records'
                   totalAmount:
                     type: number
 components:
@@ -55,8 +54,7 @@ components:
     Records:
       type: array
       items:
-        schema:
-          $ref: '#/components/schemas/Record'
+        $ref: '#/components/schemas/Record'
     Record:
       type: object
       properties:
@@ -75,7 +73,3 @@ components:
           type: string
         userId:
           type: integer
-
-
-
-
