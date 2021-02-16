@@ -34,5 +34,14 @@ module.exports = {
       }
       return res.json({ status: 'success', message: successMsgs.general })
     })
+  },
+  async signUp(req, res, next) {
+    try {
+      const { name, email, password } = req.body
+      await User.create({ name, email, password: bcrypt.hashSync(password, bcrypt.genSalt(10)) })
+      return res.json({ message: 'success', message: successMsgs.general })
+    } catch (error) {
+      next(error)
+    }
   }
 }
