@@ -49,8 +49,31 @@ paths:
                     $ref: '#/components/schemas/Records'
                   totalAmount:
                     type: number
+        404:
+          $ref: '#/components/responses/NoRecords'
+          
 components:
+  responses:
+    NoRecords:
+      description: No records found. Please check your filtering conditions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            message: No records found. Please check your filtering conditions.
   schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: <specific error message>
+          
     Records:
       type: array
       items:
@@ -58,18 +81,37 @@ components:
     Record:
       type: object
       properties:
-        id: 
-          type: integer
+        _id: 
+          type: string
+          example: 5ffae7915e002e626c1e42f9
         name:
           type: string
+          example: rent
         category:
-          type: object
+          $ref: '#/components/schemas/Category'
         date:
           type: string
           format: date-time
         amount: 
           type: number
+          format: float
+          example: 1200
         merchant:
           type: string
+          example: house
         userId:
-          type: integer
+          type: string
+          example: 5ff828391a098c4a8cadcba0
+    Category: 
+      type: object
+      properties:
+        _id: 
+          type: string
+          example: 5ff828381a098c4a8cadcb9a
+        name:
+          type: string
+          example: housing
+        iconClass:
+          type: string
+          description: font awesome icon class
+          example: fas fa-home
