@@ -18,7 +18,8 @@
       "wrongPassword": "Wrong email or password."
     },
     "404": {
-      "notFound": "Target resource not found."
+      "notFound": "Target resource not found.",
+      "noRecords": "No records found. Please check your filtering conditions."
     }
   }
 }

@@ -34,7 +34,48 @@ paths:
             type: string
           example: name-desc
         - in: query
-          name: category
+          name: categoryId
           schema:
-            type: string
+            type: integer
+      responses:
+        200:
+          description: success operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  records:
+                    schema:
+                      $ref: '#/components/schemas/Records'
+                  totalAmount:
+                    type: number
+components:
+  schemas:
+    Records:
+      type: array
+      items:
+        schema:
+          $ref: '#/components/schemas/Record'
+    Record:
+      type: object
+      properties:
+        id: 
+          type: integer
+        name:
+          type: string
+        category:
+          type: object
+        date:
+          type: string
+          format: date-time
+        amount: 
+          type: number
+        merchant:
+          type: string
+        userId:
+          type: integer
+
+
+
 

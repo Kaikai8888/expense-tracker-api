@@ -13,7 +13,7 @@ module.exports = {
       if (!bcrypt.compareSync(password, user.password)) throw new Error('wrongPassword')
 
       const payload = {
-        id: user.id,
+        id: user._id,
         name: user.name
       }
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' })

@@ -7,7 +7,7 @@ const { splitToObject } = require('../../utils/utils.js')
 
 router.get('/', (req, res, next) => {
   let error
-  const { category, sort } = req.query
+  const { categoryId, sort } = req.query
   let sortRule = sort ? splitToObject(sort) : { date: 'asc' }
   const conditions = getFilter(req)
 
