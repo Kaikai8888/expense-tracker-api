@@ -1,48 +1,27 @@
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
-const LocalStrategy = require('passport-local').Strategy
-const FacebookStrategy = require('passport-facebook').Strategy
 const User = require('../models/user.js')
-
-module.exports = app => {
-  app.use(passport.initialize())
-  app.use(passport.session())
-
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-    return User.findOne({ email })
-      .then(user => {
-        if (!user) return done(null, false, { message: '這個 Email 尚未註冊' })
-        bcrypt.compare(password, user.password)
-          .then(isMatch => {
-            if (!isMatch) return done(null, false, { message: 'Email或密碼有誤' })
-            return done(null, user)
-          })
-      })
-      .catch(error => done(error, false))
-  }))
-
-  passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_ID,
-    clientSecret: process.env.FACEBOOK_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK,
-    profileFields: ['email', 'displayName']
-  }, (accessToken, refreshToken, profile, done) => {
-    const { name, email } = profile._json
-    User.findOne({ email })
-      .then(user => {
-        if (user) return done(null, user)
-        const randomPassword = Math.random().toString(36).slice(-8)
-        return bcrypt.genSalt(10)
-          .then(salt => bcrypt.hash(randomPassword, salt))
-          .then(hash => User.create({ name, email, password: hash }))
-          .then(user => done(null, user))
-      })
-      .catch(error => done(error, false))
-  }))
-
-  passport.serializeUser((user, done) => done(null, user.id))
-  passport.deserializeUser((id, done) => User.findById(id)
-    .lean()
-    .then(user => done(null, user))
-    .catch(error => done(error, false)))
+const JwtStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt
+const redis = require('./redis.js')
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET,
+  passReqToCallback: true
 }
+
+passport.use(new JwtStrategy(opts, async (req, payload, done) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1]
+    const exist = await redis.existsAsync(token)
+    if (exist) return done(null, false)
+    const { id } = payload
+    const user = await User.findByPk(id, { attributes: { excluded: 'password' } })
+    if (!user) return done(null, false)
+    return done(null, user.toJSON())
+  } catch (error) {
+    done(error, false)
+  }
+}))
+
+module.exports = passport

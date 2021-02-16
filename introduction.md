@@ -3,6 +3,7 @@
 這幾個月來，一路從網頁前端，學習到後端的Node.js、MongoDB，決定練習運用這些新技能，來打造幾乎每天都會使用的記帳程式。
 
 程式請點[這裡](https://github.com/Kaikai8888/expense-tracker)，網站請點[這裡](https://frozen-taiga-94619.herokuapp.com/)
+Demo帳號: user1@example.com | 密碼: 12345678
 
 ![](https://github.com/Kaikai8888/expense-tracker/raw/master/screenshot/expense-tracker-demo-4.gif)
 
