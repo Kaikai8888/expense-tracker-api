@@ -1,8 +1,7 @@
-const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user.js')
-const successMsgs = require('../docs/messages.json')
+const { success: successMsgs } = require('../docs/messages.json')
 
 module.exports = {
   async signIn(req, res, next) {
@@ -38,8 +37,8 @@ module.exports = {
   async signUp(req, res, next) {
     try {
       const { name, email, password } = req.body
-      await User.create({ name, email, password: bcrypt.hashSync(password, bcrypt.genSalt(10)) })
-      return res.json({ message: 'success', message: successMsgs.general })
+      await User.create({ name, email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) })
+      return res.json({ status: 'success', message: successMsgs.general })
     } catch (error) {
       next(error)
     }
