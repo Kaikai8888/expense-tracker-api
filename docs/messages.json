@@ -1,0 +1,19 @@
+{
+  "success": {
+    "general": "ok",
+    "already": "Data has already been saved to database."
+  },
+  "error": {
+    "400": {
+      "invalidId": "Id is invalid or missing (in url path, query string or form body)",
+      "fieldMissing": "Required fields are missing or empty"
+    },
+    "403": {
+      "notRegister": "The email hasn't been registered",
+      "wrongPassword": "Wrong email or password."
+    },
+    "404": {
+      "notFound": "Target resource not found."
+    }
+  }
+}
