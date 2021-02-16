@@ -6,7 +6,11 @@
   "error": {
     "400": {
       "invalidId": "Id is invalid or missing (in url path, query string or form body)",
-      "fieldMissing": "Required fields are missing or empty"
+      "fieldMissing": "Required fields are missing or empty",
+      "invalidEmail": "Invalid email format",
+      "invalidPassword": "Invalid password: password length should be between 8 to 12 characters.",
+      "passwordInconsistent": "Password and Confirm password inconsistent.",
+      "alreadyRegister": "This email has already been registered."
     },
     "403": {
       "notRegister": "The email hasn't been registered",
